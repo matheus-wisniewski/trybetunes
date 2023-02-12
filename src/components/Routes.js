@@ -16,7 +16,10 @@ class Routes extends Component {
         <Route exact path="/profile" component={ Profile } />
         <Route path="/profile/edit" component={ ProfileEdit } />
         <Route path="/favorites" component={ Favorites } />
-        <Route path="/album/:id" component={ Album } />
+        <Route
+          path="/album/:id"
+          render={ (props) => <Album { ...props } id={ props.match.params.id } /> }
+        />
         <Route path="/search" component={ Search } />
         <Route exact path="/" component={ Login } />
         <Route path="*" component={ NotFound } />
