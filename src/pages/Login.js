@@ -4,18 +4,13 @@ import { createUser } from '../services/userAPI';
 import Loading from './Loading';
 
 class Login extends Component {
-  constructor() {
-    super();
-    this.handleClick = this.handleClick.bind(this);
-  }
-
   state = {
     nameArea: '',
     isSaveButtonDisabled: true,
     loading: false,
   };
 
-  async handleClick() {
+  handleClick = async () => {
     const { nameArea } = this.state;
     const { history } = this.props;
 
@@ -26,7 +21,7 @@ class Login extends Component {
     this.setState({ loading: false });
 
     history.push('/search');
-  }
+  };
 
   validateInputs = () => {
     const { nameArea } = this.state;
