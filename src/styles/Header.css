@@ -1,0 +1,29 @@
+.header--component {
+  align-items: center;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  height: 100%;
+  width: 180px;
+}
+
+.header--component__user {
+  background-color: black;
+  border-radius: 50px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  width: 90%;
+}
+
+.header--component__nav {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-size: 22px;
+  gap: 60px;
+  letter-spacing: 1px;
+}
+

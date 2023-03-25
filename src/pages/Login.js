@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { createUser } from '../services/userAPI';
+import Logo from '../image/logo.png';
 import Loading from './Loading';
 
 class Login extends Component {
@@ -43,23 +44,31 @@ class Login extends Component {
     if (loading) return <Loading />;
 
     return (
-      <div data-testid="page-login">
-        <form>
-          <label htmlFor="name-area">
+      <div className="login__div" data-testid="page-login">
+        <form className="login__div__form">
+
+          <img src={ Logo } alt="logo" />
+
+          <label htmlFor="name-label">
             <input
+              className="login__form__name__input"
               type="text"
               name="nameArea"
-              placeholder="insira seu nome"
+              required
+              placeholder="Email or username"
               data-testid="login-name-input"
               onChange={ this.handleChange }
               value={ nameArea }
             />
+          </label>
 
+          <label htmlFor="button-label">
             <input
+              className="login__form__button"
               type="button"
               name="isSaveButtonDisabled"
               data-testid="login-submit-button"
-              value="Entrar"
+              value="Log in"
               disabled={ isSaveButtonDisabled }
               onClick={ this.handleClick }
             />
