@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
 import Loading from './Loading';
 import '../styles/Search.css';
+import Footer from '../components/Footer';
 
 class Search extends Component {
   state = {
@@ -41,10 +42,9 @@ class Search extends Component {
   render() {
     const { inputName, isSaveButtonDisabled, searching, artist, albuns } = this.state;
     return (
-      <main className="search--main">
-        <Header />
-        <div data-testid="page-search" className="search--component__inputDiv">
-          <form>
+      <main className="search--component__main">
+        <section>
+          <div data-testid="page-search" className="search--component__searchDiv">
             <input
               type="text"
               value={ inputName }
@@ -52,49 +52,63 @@ class Search extends Component {
               placeholder="Artists or Albuns"
               onChange={ this.handleChange }
               data-testid="search-artist-input"
-              className="search--component__nameInput"
+              className="search--component__searchBar"
             />
-            <input
-              type="button"
+            <button
               data-testid="search-artist-button"
               disabled={ isSaveButtonDisabled }
               onClick={ this.handleClick }
-              value=<BsSearch />
               className="search--component__searchButton"
-            />
-          </form>
-        </div>
+            >
+              <BsSearch />
+            </button>
+          </div>
+        </section>
 
-        <div>
+        <header style={ { backgroundColor: 'blueviolet' } }>
+          <Header />
+        </header>
+
+        <body className="search--component__body">
           { artist && (
-            <h1>
+            <h1 className="search--component__resultAlbuns">
               Resultado de álbuns de:
-              { ' ' }
-              {artist}
+              <p style={ { textTransform: 'capitalize' } }>
+                { artist }
+              </p>
             </h1>)}
-          {albuns.length === 0 ? (<h1>Nenhum álbum foi encontrado</h1>) : (
-            albuns.map((album, index) => (
-              <div key={ index }>
-                <Link
-                  to={ `/album/${album.collectionId}` }
-                  data-testid={ `link-to-album-${album.collectionId}` }
-                >
-                  <img src={ album.artworkUrl100 } alt={ album.artistName } />
-                  <p>
-                    Album:
-                    {' '}
-                    { album.collectionName }
-                  </p>
-                  <p>
-                    Artista:
-                    {album.artistName }
-                  </p>
-                </Link>
-              </div>
-            ))
-          )}
+          {
+            albuns.length === 0 ? (
+              <h1 className="search--body--firstMessage">
+                Nenhum álbum foi encontrado
+              </h1>) : (
+              albuns.map((album, index) => (
+                <div key={ index } className="search--component__albums">
+                  <Link
+                    to={ `/album/${album.collectionId}` }
+                    data-testid={ `link-to-album-${album.collectionId}` }
+                  >
+                    <img src={ album.artworkUrl100 } alt={ album.artistName } />
+                    <p style={ { color: '#efefef' } }>
+                      Album:
+                      {' '}
+                      { album.collectionName }
+                    </p>
+                    <p style={ { color: '#efefef' } }>
+                      Artista:
+                      {album.artistName }
+                    </p>
+                  </Link>
+                </div>
+              ))
+            )
+          }
           {searching && <Loading />}
-        </div>
+        </body>
+
+        <footer className="search--component__footer">
+          <Footer />
+        </footer>
       </main>
     );
   }

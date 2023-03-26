@@ -1,0 +1,16 @@
+.footer-component__contact {
+  align-items: center;
+  background-color: #29282c;
+  display: flex;
+  height: 46.3px;
+  justify-content: space-evenly;
+  position: relative;
+}
+
+.footer--component__GH, .footer--component__IN {
+  color: #efefef;
+}
+
+.footer--component__GH:hover, .footer--component__IN:hover {
+  color: white;
+}
